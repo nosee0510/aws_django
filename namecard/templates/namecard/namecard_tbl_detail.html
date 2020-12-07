@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %} namecard_tbl_detail.html {% endblock %}
+{% block content %}
+
+            <h1>{{object.name}}</h1>
+
+                이름 : {{object.name}}, 전화번호: {{object.tel}}<br/>
+                이메일 : {{object.email}}, 회사: {{object.company}}<br/>
+                그룹: {{object.group}}
+
+
+
+{% endblock %}

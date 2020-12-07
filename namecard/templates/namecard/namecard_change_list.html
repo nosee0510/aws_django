@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}namecard_change_list.html{% endblock %}
+{% block content %}
+
+
+    <h1>Namecard Change -{{user}}</h1>
+    <br>
+
+    <table class="table table-bordered table-sm table-striped">
+
+        <thead>
+        <tr class="table-primary">
+            <th>Name</th>
+            <th>Mobile</th>
+            <th>Owner</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for item in object_list %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.tel }}</td>
+            <td>{{ item.owner }}</td>
+            <td><a href="{% url 'namecard:update' item.id %}">Update</a></td>
+            <td><a href="{% url 'namecard:delete' item.id %}">Delete</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+
+
+{% endblock %}

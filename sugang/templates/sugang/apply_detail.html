@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}apply_detail.html{% endblock %}
+{% block content %}
+
+    <h2 class="mt-5">{{ object.title }}</h2>
+    <div class="row">
+
+        <ul class="col-md-3 mt-3">
+            <li class="h5">Student Information</li>
+            {% if object.name %}
+            <p>이름: {{object.name}}</p>
+            <p>학과: {{ object.major}}</p>
+            <p>학번: {{object.number}}</p>
+            {% else %}<p>(blank)</p>{% endif %}
+
+            <li class="h5">Apply Date</li>
+                <p class="font-italic">{{ object.upload_dt }}</p>
+            <li class="h5">Subject Name</li>
+                <p class="font-italic">
+                    <a href="{% url 'sugang:subject_detail' object.subject.id %}"> {{ object.subject.name }}</a>
+                </p>
+        </ul>
+    </div>
+
+{% endblock %}

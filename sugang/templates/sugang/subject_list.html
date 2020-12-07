@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}subject_list.html{% endblock %}
+{% block extra-style %}
+
+<style>
+.thumbnail {
+border: 2px solid #ff9999;
+padding: 0 25px 0 0;
+}
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+    {% for item in object_list %}
+    <div class="mt-5">
+        <a class="h2" href="{% url 'sugang:subject_detail' item.id %}">
+            {{ item.name }}</a>&emsp;
+        <span class="font-italic h5">{{ item.description }}</span>
+    </div>
+
+    <hr style="margin: 0 0 20px 0;">
+
+    <div class="row">
+        {% for apply in item.apply_set.all|slice:":5" %}
+        <div class="ml-5">
+            <div class="thumbnail">
+                <a href="{{ apply.get_absolute_url }}">
+-                       {{apply.name}}
+                </a>
+                    <ul>
+                        학과: {{ apply.major}}<br/>
+                        학번: {{apply.number}}
+                    </ul>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+{% endblock %}

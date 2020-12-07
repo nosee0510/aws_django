@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}student_search.html{% endblock %}
+
+{% block content %}
+
+    <h1>Student Search</h1>
+    <br>
+    <!-- form 생성 액션에서 . 은 이페이지를 그대로 불러들음 즉 blog/post/post_search라는 요청이 전송 리다이렉트-->
+    <form action="." method="post"> {% csrf_token %}
+        {{ form.as_table }}
+        <input type="submit" value="Submit" class="btn btn-primary btn-sm">
+    </form>
+    <br/><br/>
+    {% if object_list %}
+        {% for student in object_list %}
+        <h2><a href="{ % url 'student:detail' student.id}">{{student.name}}</a></h2>
+        {{ student.modify_dt|date:"N d, Y" }}
+        <p>{{ student.major}}</p>
+        {% endfor %}
+    {% elif search_term %}
+    <b><i>Search Word({{ search_term}}) Not Found!</i></b>
+    {% endif %}
+{% endblock %}
